@@ -32,6 +32,7 @@ class Location:
         return self.horizontal * self.depth
 
 
+@dataclass
 class Puzzle1(Location):
     def forward(self, distance: int) -> None:
         self.horizontal += distance
@@ -43,6 +44,7 @@ class Puzzle1(Location):
         self.depth += distance
 
 
+@dataclass
 class Puzzle2(Location):
     def forward(self, distance: int) -> None:
         self.horizontal += distance
