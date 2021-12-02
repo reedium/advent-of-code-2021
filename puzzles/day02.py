@@ -3,35 +3,66 @@ Advent of Code 2021 - Day 02
 
 Run with:
     python puzzles/day02.py inputs/day02.txt
+
+This is overly complicated to keep tests similar while also using dataclasses for learning
 """
 
 import pathlib
 import sys
 from typing import List, Tuple
 
-def part1(inputs: List[int], horizontal: int=0, depth: int=0) -> int:
-    for line in inputs:
-        step = line.split()
-        if step[0] == "forward":
-            horizontal += int(step[1])
-        elif step[0] == "up":
-            depth -= int(step[1])
-        elif step[0] == "down":
-            depth += int(step[1])
-    return horizontal * depth
+from dataclasses import dataclass
 
 
-def part2(inputs: List[int], horizontal: int=0, depth: int=0, aim: int=0) -> int:
-    for line in inputs:
-        step = line.split()
-        if step[0] == "forward":
-            horizontal += int(step[1])
-            depth += aim * int(step[1])
-        elif step[0] == "up":
-            aim -= int(step[1])
-        elif step[0] == "down":
-            aim += int(step[1])
-    return horizontal * depth
+@dataclass
+class Location:
+    horizontal = 0
+    depth = 0
+    aim = 0
+
+    def run(self, inputs: List[str]) -> int:
+        for line in inputs:
+            # forward 20 -> self.forward(20)
+            step = line.split()
+            getattr(self, step[0])(int(step[1]))
+
+        return self.calculate()
+
+    def calculate(self):
+        return self.horizontal * self.depth
+
+
+class Part1(Location):
+    def forward(self, distance: int) -> None:
+        self.horizontal += distance
+
+    def up(self, distance: int) -> None:
+        self.depth -= distance
+
+    def down(self, distance: int) -> None:
+        self.depth += distance
+
+
+class Part2(Location):
+    def forward(self, distance: int) -> None:
+        self.horizontal += distance
+        self.depth += self.aim * distance
+
+    def up(self, distance: int) -> None:
+        self.aim -= distance
+
+    def down(self, distance: int) -> None:
+        self.aim += distance
+
+
+def part1(inputs: List[int]) -> int:
+    puzzle = Part1()
+    return puzzle.run(inputs)
+
+
+def part2(inputs: List[int]) -> int:
+    puzzle = Part2()
+    return puzzle.run(inputs)
 
 
 def parse(inputs: str) -> List[List[str]]:
@@ -56,6 +87,7 @@ def main() -> None:
 
         print(f"Part 1 Result: {part1_result}")
         print(f"Part 2 Result: {part2_result}")
+
 
 if __name__ == "__main__":
     main()
