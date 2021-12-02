@@ -28,7 +28,7 @@ class Location:
 
         return self.calculate()
 
-    def calculate(self):
+    def calculate(self) -> int:
         return self.horizontal * self.depth
 
 
@@ -65,7 +65,7 @@ def part2(inputs: List[int]) -> int:
     return puzzle.run(inputs)
 
 
-def parse(inputs: str) -> List[List[str]]:
+def parse(inputs: str) -> List[str]:
     """Parse the input string"""
     return inputs.split("\n")
 
