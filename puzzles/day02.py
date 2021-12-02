@@ -11,10 +11,7 @@ import pathlib
 import sys
 from typing import List, Tuple
 
-from dataclasses import dataclass
 
-
-@dataclass
 class Location:
     horizontal = 0
     depth = 0
@@ -32,7 +29,6 @@ class Location:
         return self.horizontal * self.depth
 
 
-@dataclass
 class Puzzle1(Location):
     def forward(self, distance: int) -> None:
         self.horizontal += distance
@@ -44,7 +40,6 @@ class Puzzle1(Location):
         self.depth += distance
 
 
-@dataclass
 class Puzzle2(Location):
     def forward(self, distance: int) -> None:
         self.horizontal += distance
