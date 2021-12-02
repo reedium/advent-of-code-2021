@@ -45,3 +45,7 @@ def main() -> None:
 
         print(f"Part 1 Result: {part1_result}")
         print(f"Part 2 Result: {part2_result}")
+
+
+if __name__ == "__main__":
+    main()

@@ -28,12 +28,12 @@ def dayXX_data():
 
 @pytest.mark.skip(reason="Not implemented")
 def test_example1(example_data1):
-    assert aoc.part1(example_data) == ...
+    assert aoc.part1(example_data1) == ...
 
 
 @pytest.mark.skip(reason="Not implemented")
 def test_example2(example_data2):
-    assert aoc.part2(example_data) == ...
+    assert aoc.part2(example_data2) == ...
 
 
 @pytest.mark.skip(reason="Not implemented")
