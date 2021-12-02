@@ -17,16 +17,20 @@ def day02_data():
 
 
 def test_example1(example_data):
-    assert aoc.part1(example_data) == 150
+    puzzle = aoc.Puzzle1()
+    assert puzzle.run(example_data) == 150
 
 
 def test_example2(example_data):
-    assert aoc.part2(example_data) == 900
+    puzzle = aoc.Puzzle2()
+    assert puzzle.run(example_data) == 900
 
 
 def test_part1(day02_data):
-    assert aoc.part1(day02_data) == 1670340
+    puzzle = aoc.Puzzle1()
+    assert puzzle.run(day02_data) == 1670340
 
 
 def test_part2(day02_data):
-    assert aoc.part2(day02_data) == 1954293920
+    puzzle = aoc.Puzzle2()
+    assert puzzle.run(day02_data) == 1954293920

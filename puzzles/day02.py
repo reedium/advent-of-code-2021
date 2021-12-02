@@ -32,7 +32,7 @@ class Location:
         return self.horizontal * self.depth
 
 
-class Part1(Location):
+class Puzzle1(Location):
     def forward(self, distance: int) -> None:
         self.horizontal += distance
 
@@ -43,7 +43,7 @@ class Part1(Location):
         self.depth += distance
 
 
-class Part2(Location):
+class Puzzle2(Location):
     def forward(self, distance: int) -> None:
         self.horizontal += distance
         self.depth += self.aim * distance
@@ -55,16 +55,6 @@ class Part2(Location):
         self.aim += distance
 
 
-def part1(inputs: List[int]) -> int:
-    puzzle = Part1()
-    return puzzle.run(inputs)
-
-
-def part2(inputs: List[int]) -> int:
-    puzzle = Part2()
-    return puzzle.run(inputs)
-
-
 def parse(inputs: str) -> List[str]:
     """Parse the input string"""
     return inputs.split("\n")
@@ -73,10 +63,11 @@ def parse(inputs: str) -> List[str]:
 def solve(path: str) -> Tuple[int, int]:
     """Solve the puzzle"""
     puzzle_input = parse(pathlib.Path(path).read_text().strip())
-    part1_result = part1(puzzle_input)
-    part2_result = part2(puzzle_input)
 
-    return part1_result, part2_result
+    part1 = Puzzle1()
+    part2 = Puzzle2()
+
+    return part1.run(puzzle_input), part2.run(puzzle_input)
 
 
 def main() -> None:
