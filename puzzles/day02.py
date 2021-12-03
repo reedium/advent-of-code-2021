@@ -4,7 +4,7 @@ Advent of Code 2021 - Day 02
 Run with:
     python puzzles/day02.py inputs/day02.txt
 
-This is overly complicated to keep tests similar while also using dataclasses for learning
+This is overly complicated to mess around with classes
 """
 
 import pathlib
