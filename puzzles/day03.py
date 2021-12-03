@@ -18,7 +18,7 @@ class Diagnostics:
     def __init__(self, report: List[int]) -> None:
         self.report = report
 
-    def calc_power_usage(self) -> None:
+    def calc_power_usage(self) -> int:
         most_common = self.commonality(self.report)
         gamma = epsilon = ""
         for common in most_common:
@@ -33,7 +33,13 @@ class Diagnostics:
         epsilon = int(epsilon, 2)
         return gamma * epsilon
 
-    def calc_oxygen_generator_rating(self, inputs) -> int:
+    def calc_life_support_rating(self) -> int:
+        oxygen_generator_rating = self.calc_oxygen_generator_rating(self.report)
+        co2_scrubber_rating = self.calc_co2_scrubber_rating(self.report)
+        return oxygen_generator_rating * co2_scrubber_rating
+
+
+    def calc_oxygen_generator_rating(self, inputs: List[str]) -> int:
         """
         Bit Criteria:
           Most common value in current bit position
@@ -58,7 +64,7 @@ class Diagnostics:
 
         return int(report[0], 2)
 
-    def calc_co2_scrubber_rating(self, inputs) -> int:
+    def calc_co2_scrubber_rating(self, inputs: List[str]) -> int:
         """
         Bit Criteria:
           Least common value in current position
@@ -82,13 +88,9 @@ class Diagnostics:
 
         return int(report[0], 2)
 
-    def calc_life_support_rating(self) -> int:
-        oxygen_generator_rating = self.calc_oxygen_generator_rating(self.report)
-        co2_scrubber_rating = self.calc_co2_scrubber_rating(self.report)
-        return oxygen_generator_rating * co2_scrubber_rating
 
     @staticmethod
-    def commonality(report: List[int]) -> List[int]:
+    def commonality(report: List[str]) -> List[int]:
         """
         Return the most common value in each column of binary numbers
 
