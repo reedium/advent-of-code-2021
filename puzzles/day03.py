@@ -59,9 +59,6 @@ class Diagnostics:
                 if len(report) == 1:
                     return int(report[0], 2)
 
-        if len(report) > 1:  # May not be necessary
-            report = self.calc_oxygen_generator_rating(report)
-
         return int(report[0], 2)
 
     def calc_co2_scrubber_rating(self, inputs: List[str]) -> int:
@@ -82,9 +79,6 @@ class Diagnostics:
 
                 if len(report) == 1:
                     return int(report[0], 2)
-
-        if len(report) > 1:  # May not be necessary
-            report = self.calc_oxygen_generator_rating(report)
 
         return int(report[0], 2)
 
