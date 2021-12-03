@@ -12,7 +12,7 @@ import sys
 from typing import List, Tuple
 
 
-class Location:
+class Submarine:
     horizontal = 0
     depth = 0
     aim = 0
@@ -29,7 +29,7 @@ class Location:
         return self.horizontal * self.depth
 
 
-class Puzzle1(Location):
+class Puzzle1(Submarine):
     def forward(self, distance: int) -> None:
         self.horizontal += distance
 
@@ -40,7 +40,7 @@ class Puzzle1(Location):
         self.depth += distance
 
 
-class Puzzle2(Location):
+class Puzzle2(Submarine):
     def forward(self, distance: int) -> None:
         self.horizontal += distance
         self.depth += self.aim * distance
