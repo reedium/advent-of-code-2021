@@ -13,13 +13,13 @@ from collections import defaultdict
 
 
 class Diagnostics:
-    report = None
+    report_data = None
 
     def __init__(self, report: List[int]) -> None:
-        self.report = report
+        self.report_data = report
 
     def calc_power_usage(self) -> int:
-        most_common = self.commonality(self.report)
+        most_common = self.commonality(self.report_data)
         gamma = epsilon = ""
         for common in most_common:
             if common == 1:
@@ -34,19 +34,19 @@ class Diagnostics:
         return gamma * epsilon
 
     def calc_life_support_rating(self) -> int:
-        oxygen_generator_rating = self.calc_oxygen_generator_rating(self.report)
-        co2_scrubber_rating = self.calc_co2_scrubber_rating(self.report)
+        oxygen_generator_rating = self.calc_oxygen_generator_rating()
+        co2_scrubber_rating = self.calc_co2_scrubber_rating()
         return oxygen_generator_rating * co2_scrubber_rating
 
 
-    def calc_oxygen_generator_rating(self, inputs: List[str]) -> int:
+    def calc_oxygen_generator_rating(self) -> int:
         """
         Bit Criteria:
-          Most common value in current bit position
-              If 0 and 1 are equally common, keep values with a 1
-          Keep only values with this bit in this position
+            Most common value in current bit position
+                If 0 and 1 are equally common, keep values with a 1
+            Keep only values with this bit in this position
         """
-        report = inputs.copy()
+        report = self.report_data.copy()
         for column in range(len(report[0])):
             most_common = self.commonality(report)
             for binary in list(report):
@@ -59,16 +59,16 @@ class Diagnostics:
                 if len(report) == 1:
                     return int(report[0], 2)
 
-        return int(report[0], 2)
+        return 0 # Failsafe
 
-    def calc_co2_scrubber_rating(self, inputs: List[str]) -> int:
+    def calc_co2_scrubber_rating(self) -> int:
         """
         Bit Criteria:
           Least common value in current position
               If 0 and 1 are equally common, keep values with a 0
           Keep only values with this bit in this position
         """
-        report = inputs.copy()
+        report = self.report_data.copy()
         for column in range(len(report[0])):
             most_common = self.commonality(report)
             for binary in list(report):
@@ -80,7 +80,7 @@ class Diagnostics:
                 if len(report) == 1:
                     return int(report[0], 2)
 
-        return int(report[0], 2)
+        return 0 # Failsafe
 
 
     @staticmethod
