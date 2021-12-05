@@ -10,7 +10,7 @@ import dayXX as aoc
 INPUTS_DIR = f"{pathlib.Path(__file__).parent.parent}/inputs"
 
 @pytest.fixture
-def example_data1():
+def example_data():
     input_path = f"{INPUTS_DIR}/dayXX-example.txt"
     return aoc.parse(pathlib.Path(input_path).read_text().strip())
 
