@@ -37,10 +37,10 @@ def test_example2(example_data2):
 
 
 @pytest.mark.skip(reason="Not implemented")
-def test_part1(day02_data):
-    assert aoc.part1(day02_data) == ...
+def test_part1(dayXX_data):
+    assert aoc.part1(dayXX_data) == ...
 
 
 @pytest.mark.skip(reason="Not implemented")
-def test_part2(day02_data):
-    assert aoc.part2(day02_data) == ...
+def test_part2(dayXX_data):
+    assert aoc.part2(dayXX_data) == ...
