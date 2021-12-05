@@ -39,6 +39,9 @@ class Bingo:
                 if self._is_solved(board):
                     winning_scores.append(self._calculate_score(board, draw))
 
+                    if not squid_rules:
+                        return winning_scores[0]
+
                     try:
                         game = np.delete(game, index, axis=0)
                     except IndexError:  # I don't understand why this is needed
