@@ -22,7 +22,7 @@ Each day will include a pytest script that uses examples from the day.
 This allows for verifying the code works by running `pytest`. For example:
 
 
-Note: `--durations=0` shows the slowest tests (if taking longer then 0.005s
+Note: `--durations=0` shows the slowest tests (if taking longer then 0.005s). This is great for testing differences between changes.
 
 ```
 |--% pytest -v --durations=0 puzzles/test_day04.py
