@@ -33,6 +33,7 @@ class AlignCrabSubs:
         return int(sum(abs(num - target) for num in self.positions))
 
     def calc_fuel_pricey(self, target: int) -> int:
+        # This is slow and needs reworking
         fuel = 0
         for num in self.positions:
             num_range = abs(num - target) + 1
