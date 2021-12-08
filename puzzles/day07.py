@@ -18,16 +18,16 @@ class AlignCrabSubs:
         self.positions = positions
 
     def calc_fuel(self, pricey: bool = False) -> int:
-        if pricey:
-            fuel = None
-            for position in range(len(set(self.positions)) + 1):
-                price = self.calc_fuel_pricey(position)
-                if fuel is None or fuel > price:
-                    fuel = price
-
-            return fuel
-        else:
+        if not pricey:
             return self.calc_fuel_simple(median(self.positions))
+
+        fuel = None
+        for position in range(len(set(self.positions)) + 1):
+            price = self.calc_fuel_pricey(position)
+            if fuel is None or fuel > price:
+                fuel = price
+
+        return fuel
 
     def calc_fuel_simple(self, target: int) -> int:
         return int(sum(abs(num - target) for num in self.positions))
