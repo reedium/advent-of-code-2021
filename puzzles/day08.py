@@ -8,7 +8,7 @@ Run with:
 import pathlib
 import sys
 from collections import defaultdict
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 
 class Display:
@@ -32,10 +32,10 @@ class Display:
      gggg    gggg    ....    gggg    gggg
     """
 
-    def __init__(self, entries: List[str]):
+    def __init__(self, entries: List[str]) -> None:
         self.entries = self._parse(entries)
 
-    def decode(self):
+    def decode(self) -> int:
         results = []
 
         for entry in self.entries:
@@ -45,21 +45,21 @@ class Display:
 
         return sum(results)
 
-    def unique_count(self):
+    def unique_count(self) -> int:
         unique = 0
         for entry in self.entries:
-            unique += self._get_unique(entry)
+            unique += self._get_unique(entry["outputs"])
         return unique
 
     @staticmethod
-    def _decrypt(cipher, enc_string):
+    def _decrypt(cipher: Dict[str, int], enc_string: List[str]) -> int:
         output = ""
         for code in enc_string:
             output += str(cipher["".join(sorted(code))])
         return int(output)
 
     @staticmethod
-    def _generate_cipher(entry):
+    def _generate_cipher(entry: List[str]) -> Dict[str, int]:
         codes = {}  # Length: Actual Number
         filtered = defaultdict(list)
         for signal in entry:
@@ -92,15 +92,15 @@ class Display:
         return results
 
     @staticmethod
-    def _get_unique(entries):
+    def _get_unique(entries: List[str]) -> int:
         unique = 0
-        for entry in entries["outputs"]:
+        for entry in entries:
             length = len(entry)
             unique += length in [2, 4, 3, 7]  # 1,4,7,8
         return unique
 
     @staticmethod
-    def _parse(lines):
+    def _parse(lines: List[str]) -> List:
         entries = []
         for line in lines:
             split = line.split()
