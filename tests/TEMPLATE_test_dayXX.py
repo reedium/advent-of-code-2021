@@ -5,9 +5,13 @@ Remove the 'Not implemented' marks when ready to run the test
 """
 import pathlib
 import pytest
+import sys
+
+ROOT_DIR = pathlib.Path(__file__).parent.parent
+sys.path.append(f"{ROOT_DIR}/puzzles")
 import dayXX as aoc
 
-INPUTS_DIR = f"{pathlib.Path(__file__).parent.parent}/inputs"
+INPUTS_DIR = f"{ROOT_DIR}/inputs"
 
 @pytest.fixture
 def example_data():
