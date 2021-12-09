@@ -8,7 +8,7 @@ Hopefully I keep up with it
 # Installation
 ```
 git clone https://gitea.ryanreed.net:3000/ryanreed/aoc2021.git
-cd 2021-advent-of-code
+cd 2021aoc
 python3 -m venv .venv
 . .venv/bin/activate
 pip install --upgrade pip
