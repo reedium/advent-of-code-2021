@@ -25,7 +25,7 @@ def part2(inputs: List[int]) -> int:
 
 def parse(inputs: str) -> List[int]:
     """Parse the input string"""
-    return [int(line) for line in inputs.split()]
+    return [line for line in inputs.split("\n")]
 
 
 def solve(path: str) -> Tuple[int, int]:

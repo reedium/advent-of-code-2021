@@ -26,7 +26,6 @@ class School:
 
     def __init__(self, data: List[str]) -> None:
         self.parse(data)
-        self.synchronized_steps = []
 
     def flash(self, octopus: Octopus) -> None:
         octopus.energy_level = 0
@@ -36,21 +35,17 @@ class School:
 
     def update(self, octopus: Octopus) -> None:
         if octopus.last_flash == self.step:
-            return None
+            return
 
         octopus.energy_level += 1
         if octopus.energy_level == 10:
             self.flash(octopus)
 
     def update_neighbors(self, location: Tuple[int, int]) -> None:
-        min_row = 0 if location[0] == 0 else location[0] - 1
-        min_col = 0 if location[1] == 0 else location[1] - 1
-        max_row = (
-            location[0] if location[0] == self.size["rows"] - 1 else location[0] + 1
-        )
-        max_col = (
-            location[1] if location[1] == self.size["cols"] - 1 else location[1] + 1
-        )
+        min_row = 0 if not location[0] else location[0] - 1
+        min_col = 0 if not location[1] else location[1] - 1
+        max_row = location[0] if location[0] == self.size["rows"] - 1 else location[0] + 1
+        max_col = location[1] if location[1] == self.size["cols"] - 1 else location[1] + 1
 
         for row in range(min_row, max_row + 1):
             for col in range(min_col, max_col + 1):
@@ -88,9 +83,7 @@ class School:
                     self.update(octopus)
 
             if self.is_synchronized():
-                break
-
-        return step
+                return step
 
     @property
     def total_flashes(self) -> int:
